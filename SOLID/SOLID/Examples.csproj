@@ -10,7 +10,6 @@
     <Folder Include="Interface segregation\" />
     <Folder Include="Dependency inversion\" />
     <Folder Include="Open closed\" />
-    <Folder Include="Single responsibility\" />
   </ItemGroup>
 
 </Project>
