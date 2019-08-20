@@ -1,16 +1,21 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Net.Mail;
 
 namespace Suggestions.Single_responsibility
 {
-    public class EmailService
+    public static class EmailService
     {
-        public static bool ValidateEmail(string email)
-        {
-            return email.Contains("@");
-        }
         public static void SendEmail(MailMessage message)
         {
-            new EmailClient("smtp.nowhere.com").Send(message);
+            EmailAddressValidator.ValidateEmailAddress(message.To);
+
+            // TODO: Send the actual mail
+            Console.WriteLine($"Sent email with subject: {message.Subject}");
+        }
+
+        public static MailMessage StandardWelcomeMessage(User user)
+        {
+            return new MailMessage("support@company.com", user.Email, $"Welcome, {user.Email}!", $"Your password is {user.Password}");
         }
     }
 }

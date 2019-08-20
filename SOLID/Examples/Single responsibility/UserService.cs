@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 
 namespace Examples.Single_responsibility
@@ -16,14 +15,16 @@ namespace Examples.Single_responsibility
         public string Password { get; }
     }
 
-    public sealed class UserService
+    public static class UserService
     {
-        public static void Register(string email, string password)
+        public static void Register(User user)
         {
-            if (!ValidateEmail(email))
-                throw new ValidationException("Provided email address is not valid");
+            if (!ValidateEmail(user.Email))
+            {
+                Console.WriteLine($"{user.Email} is not a valid email address");
+                throw new FormatException("Provided email address is not valid");
+            }
 
-            var user = new User(email, password);
 
             SendEmail(new MailMessage("support@company.com", user.Email) {Subject = $"Welcome, {user.Email}!", Body = $"Your password is {user.Password}"});
         }
@@ -35,6 +36,7 @@ namespace Examples.Single_responsibility
 
         private static void SendEmail(MailMessage message)
         {
+            // TODO: Send the actual mail
             Console.WriteLine($"Sent email with subject: {message.Subject}");
         }
     }
