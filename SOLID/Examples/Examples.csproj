@@ -11,7 +11,6 @@
     <Folder Include="Liskov substitution\" />
     <Folder Include="Interface segregation\" />
     <Folder Include="Dependency inversion\" />
-    <Folder Include="Open closed\" />
   </ItemGroup>
 
 </Project>
