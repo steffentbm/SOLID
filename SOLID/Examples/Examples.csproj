@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interface segregation\" />
     <Folder Include="Dependency inversion\" />
   </ItemGroup>
 

@@ -2,7 +2,7 @@
 {
     public class Customer : ICanGetPrice, IHasBonusPoints
     {
-        private int _bonusPoints = 0;
+        private int _bonusPoints;
 
         public double GetPrice()
         {
