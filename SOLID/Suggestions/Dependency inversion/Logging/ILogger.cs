@@ -1,4 +1,4 @@
-﻿namespace Suggestions.Dependency_inversion
+﻿namespace Suggestions.Dependency_inversion.Logging
 {
     public interface ILogger
     {

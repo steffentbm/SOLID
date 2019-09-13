@@ -9,7 +9,7 @@ namespace Examples.Dependency_inversion
         {
             try
             {
-                // Save the string to the database
+                StoreToDatabase(data);
             }
             catch (Exception e)
             {
@@ -17,8 +17,15 @@ namespace Examples.Dependency_inversion
                 Console.WriteLine(e);
 
                 // File logger
-                File.WriteAllText("log.txt", e.Message);
+                File.WriteAllText("errors.log", e.Message);
+
+                // More loggers...?
             }
+        }
+
+        private static void StoreToDatabase(string data)
+        {
+            throw new Exception("Didn't find a database!");
         }
     }
 }
