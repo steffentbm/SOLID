@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Suggestions.Liskov_substitution;
@@ -33,7 +32,7 @@ namespace Suggestions.Tests
         [Test]
         public void CanAddBonusPointsToCustomers()
         {
-            Assert.DoesNotThrow(() =>_customers.ForEach(customer => customer.AddBonusPoints(10)));
+            Assert.DoesNotThrow(() => _customers.ForEach(customer => customer.AddBonusPoints(10)));
         }
 
         [Test]

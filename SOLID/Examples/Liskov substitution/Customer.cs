@@ -2,12 +2,12 @@
 {
     public abstract class Customer
     {
+        internal int BonusPoints;
+
         protected Customer()
         {
             BonusPoints = 0;
         }
-
-        internal int BonusPoints;
 
         public abstract double GetPrice();
         public abstract void AddBonusPoints(int points);
