@@ -2,9 +2,19 @@
 {
     public abstract class Customer
     {
-        internal int BonusPoints = 0;
+        protected Customer()
+        {
+            BonusPoints = 0;
+        }
+
+        internal int BonusPoints;
 
         public abstract double GetPrice();
         public abstract void AddBonusPoints(int points);
+
+        public virtual int GetBonusPoints()
+        {
+            return BonusPoints;
+        }
     }
 }
