@@ -1,21 +1,23 @@
 ﻿using System;
-using System.Net.Mail;
+using System.ComponentModel.DataAnnotations;
 
 namespace Suggestions.Single_responsibility
 {
-    public static class EmailService
+    public class EmailService
     {
-        public static void SendEmail(MailMessage message)
+        public void SendWelcomeEmail(string address)
         {
-            EmailAddressValidator.ValidateEmailAddress(message.To);
+            if (!IsEmailAddressValid(address))
+                throw new ValidationException("Email address not valid!");
 
             // TODO: Send the actual mail
-            Console.WriteLine($"Sent email with subject: {message.Subject}");
+
+            Console.WriteLine($"Sent welcome email to: {address}");
         }
 
-        public static MailMessage StandardWelcomeMessage(User user)
+        private static bool IsEmailAddressValid(string address)
         {
-            return new MailMessage("support@company.com", user.Email, $"Welcome, {user.Email}!", $"Your password is {user.Password}");
+            return address.Contains("@");
         }
     }
 }

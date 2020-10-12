@@ -1,4 +1,4 @@
-using System;
+using System.ComponentModel.DataAnnotations;
 using NUnit.Framework;
 using Suggestions.Single_responsibility;
 
@@ -13,7 +13,9 @@ namespace Suggestions.Tests
         public void InvalidEmailsThrowsException(string email, string password)
         {
             var user = new User(email, password);
-            Assert.Throws<FormatException>(() => UserService.Register(user));
+            UserService userService = new UserService(new EmailService(), new UserRepository());
+
+            Assert.Throws<ValidationException>(() => userService.Register(user));
         }
 
         [Test]
@@ -22,7 +24,9 @@ namespace Suggestions.Tests
         public void ValidEmailsDoesNotThrowException(string email, string password)
         {
             var user = new User(email, password);
-            Assert.DoesNotThrow(() => UserService.Register(user));
+            UserService userService = new UserService(new EmailService(), new UserRepository());
+
+            Assert.DoesNotThrow(() => userService.Register(user));
         }
     }
 }

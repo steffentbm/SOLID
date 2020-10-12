@@ -13,7 +13,9 @@ namespace Examples.Tests
         public void InvalidEmailsThrowsException(string email, string password)
         {
             var user = new User(email, password);
-            Assert.Throws<FormatException>(() => UserService.Register(user));
+            UserService userService = new UserService();
+
+            Assert.Throws<FormatException>(() => userService.Register(user));
         }
 
         [Test]
@@ -22,7 +24,9 @@ namespace Examples.Tests
         public void ValidEmailsDoesNotThrowException(string email, string password)
         {
             var user = new User(email, password);
-            Assert.DoesNotThrow(() => UserService.Register(user));
+            UserService userService = new UserService();
+
+            Assert.DoesNotThrow(() => userService.Register(user));
         }
     }
 }

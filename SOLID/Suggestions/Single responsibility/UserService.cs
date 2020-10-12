@@ -1,10 +1,22 @@
 ﻿namespace Suggestions.Single_responsibility
 {
-    public static class UserService
+    public class UserService
     {
-        public static void Register(User user)
+        private EmailService _emailService;
+        private UserRepository _userRepository;
+
+		public UserService(EmailService emailService, UserRepository userRepository)
+		{
+            _emailService = emailService;
+            _userRepository = userRepository;
+		}
+        
+        public void Register(User user)
         {
-            EmailService.SendEmail(EmailService.StandardWelcomeMessage(user));
+            // Actual business logic: Store user info and send welcome email
+            // How the EmailService and UserRepository classes perform these actions will not change this file
+            _userRepository.Add(user);
+            _emailService.SendWelcomeEmail(user.Email);
         }
     }
 }

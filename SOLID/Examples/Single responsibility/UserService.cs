@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Net.Mail;
+using System.Collections.Generic;
 
 namespace Examples.Single_responsibility
 {
@@ -15,9 +15,11 @@ namespace Examples.Single_responsibility
         public string Password { get; }
     }
 
-    public static class UserService
+    public class UserService
     {
-        public static void Register(User user)
+        private IList<User> _users = new List<User>();
+
+        public void Register(User user)
         {
             if (!ValidateEmail(user.Email))
             {
@@ -25,19 +27,20 @@ namespace Examples.Single_responsibility
                 throw new FormatException("Provided email address is not valid");
             }
 
+            _users.Add(user);
 
-            SendEmail(new MailMessage("support@company.com", user.Email) {Subject = $"Welcome, {user.Email}!", Body = $"Your password is {user.Password}"});
+            SendWelcomeEmail(user.Email);
         }
 
-        private static bool ValidateEmail(string email)
+        private static bool ValidateEmail(string address)
         {
-            return email.Contains("@");
+            return address.Contains("@");
         }
 
-        private static void SendEmail(MailMessage message)
+        private static void SendWelcomeEmail(string address)
         {
             // TODO: Send the actual mail
-            Console.WriteLine($"Sent email with subject: {message.Subject}");
+            Console.WriteLine($"Sent welcome email to: {address}");
         }
     }
 }
